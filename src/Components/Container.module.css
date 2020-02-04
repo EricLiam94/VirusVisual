@@ -1,0 +1,15 @@
+.container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 40px auto;
+}
+
+.update {
+  width: 100%;
+  text-align: right;
+  float: right;
+  margin-right: 0;
+  margin: 10px 20px;
+}
