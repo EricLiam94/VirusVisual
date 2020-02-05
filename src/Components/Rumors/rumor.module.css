@@ -1,0 +1,39 @@
+.block {
+  border-radius: 5px;
+  border: 1px solid rgb(43, 42, 42);
+  width: 25%;
+  background-color: #fff;
+  box-shadow: 2px 1px 1px grey;
+  margin: 2%;
+}
+
+.body {
+  padding: 5%;
+}
+
+.head {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.title {
+  width: 90%;
+  text-align: center;
+  padding: 8px 2px;
+  margin: auto;
+  font-weight: bold;
+  border-bottom: 0.5px solid grey;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .block {
+    width: 80%;
+  }
+}

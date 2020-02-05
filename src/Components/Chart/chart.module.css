@@ -1,0 +1,36 @@
+.marker {
+  background-color: red;
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: 1s linear;
+  position: relative;
+}
+
+.tooltip {
+  transition: 0.5s ease-in-out;
+  background-color: #2ecc71;
+  z-index: 1000;
+  opacity: 0;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: absolute;
+  width: fit-content;
+  bottom: -5px;
+  visibility: hidden;
+  left: -5px;
+  overflow: hidden;
+}
+
+.tooltip div {
+  display: block;
+  white-space: nowrap;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+}
+
+.obj:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  animation: none;
+}

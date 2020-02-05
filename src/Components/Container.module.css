@@ -13,3 +13,14 @@
   margin-right: 0;
   margin: 10px 20px;
 }
+
+.carousel {
+  width: 70%;
+  margin: auto;
+}
+
+@media (max-width: 700px) {
+  .carousel {
+    width: 100%;
+  }
+}
