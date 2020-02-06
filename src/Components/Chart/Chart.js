@@ -50,7 +50,6 @@ const Chart = () => {
   const mouesLeave = () => {
     setdisplay(null);
   };
-  console.log(display);
   return (
     <div className={style.gl}>
       {display && (

@@ -3,7 +3,6 @@ import style from "./style.module.css";
 import Loader from "react-loader-spinner";
 
 const DataBlock = props => {
-  console.log(props.success);
   return (
     <div className={style.block} style={props.color}>
       <span className={style.title}>{props.name}</span>
