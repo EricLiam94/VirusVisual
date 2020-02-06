@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataBlock from "./DataBlock/DataBlock";
 import style from "./Container.module.css";
 import CarouselPlay from "./CarouselPlay";
-
+import Chart from "./Chart/Chart";
 var res = {
   results: [
     {
@@ -113,6 +113,7 @@ const Container = () => {
           success={success}
         />
       </div>
+      <Chart />
       <CarouselPlay success={success} pics={pics} />
     </div>
   );
