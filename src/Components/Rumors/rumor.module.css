@@ -5,6 +5,8 @@
   background-color: #fff;
   box-shadow: 2px 1px 1px grey;
   margin: 2%;
+  background-color: whitesmoke;
+  color: black;
 }
 
 .body {
@@ -32,8 +34,14 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .block {
     width: 80%;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .block {
+    width: 40%;
   }
 }

@@ -5,8 +5,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import Container from "./Components/Container";
 import News from "./Components/News/News";
 import Rumors from "./Components/Rumors/Rumors";
+import About from "./Components/About/About";
 require("dotenv");
 function App() {
+  if (window.history && "scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
   return (
     <div className="App">
       <Navbar />
@@ -15,7 +19,7 @@ function App() {
       <Chart />
       <News />
       <Rumors />
-      {/* <Chart /> */}
+      <About />
     </div>
   );
 }

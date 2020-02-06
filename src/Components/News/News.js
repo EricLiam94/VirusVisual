@@ -125,7 +125,11 @@ const News = props => {
 
   return (
     <div className={style.container}>
-      <h1 id="news" style={{ margin: "40px auto", textAlign: "center" }}>
+      <h1
+        id="news"
+        name="news"
+        style={{ margin: "40px auto", textAlign: "center" }}
+      >
         {" "}
         Top 10 News{" "}
       </h1>

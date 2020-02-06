@@ -2,9 +2,12 @@
   z-index: 1000;
   position: fixed;
   width: 100%;
+  display: flex;
   top: 0;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(27, 23, 23);
-  min-height: 30px;
+  height: 50px;
   padding: 10px 40px;
 }
 
@@ -12,6 +15,11 @@
   color: greenyellow;
   font-size: 30px;
   float: left;
+  cursor: pointer;
+}
+
+.logocon {
+  z-index: 5;
 }
 
 .title {
@@ -26,19 +34,99 @@
 .ul {
   list-style-type: none;
   margin: 0;
+  display: flex;
+  position: relative;
   padding: 0;
   overflow: hidden;
   float: right;
 }
 
 .li a {
-  padding: 0 10px;
+  padding: 5px 10px;
+  position: relative;
   color: white;
   font-size: 18px;
+  display: inline-block;
   font-weight: 600;
   transition: 0.4s ease-in;
 }
 
+.toggle {
+  display: none;
+}
+
 .li a:hover {
-  opacity: 0.8;
+  background-color: #205aff;
+}
+
+@media (max-width: 680px) {
+  .toggle {
+    display: ;
+  }
+
+  .ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    transform: translateY(-100%);
+    width: 100%;
+    height: calc(100vh - 60px);
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    flex-direction: column;
+    background-color: rgba(27, 23, 23, 0.9);
+  }
+  .li a {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  .toggle {
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .toggle::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    width: 100%;
+    height: 2px;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 -7px 0 #fff;
+    transition: 0.4s ease-in;
+  }
+
+  .toggle::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    z-index: 1;
+    height: 2px;
+    background-color: #fff;
+    transition: 0.4s ease-in;
+  }
+
+  .active {
+    transform: translateY(0);
+  }
+
+  .active + .toggle::before {
+    box-shadow: none;
+    transform: rotate(45deg);
+  }
+
+  .active + .toggle::after {
+    transform: rotate(135deg);
+    top: 9px;
+  }
+}
+
+.navbar span {
+  cursor: pointer;
 }

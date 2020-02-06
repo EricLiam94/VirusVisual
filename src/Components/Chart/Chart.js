@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, {
   Layer,
   NavigationControl,
@@ -9,12 +9,13 @@ import style from "./chart.module.css";
 
 const Chart = () => {
   const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 8
+    width: "100%",
+    height: "100%",
+    latitude: 35.8617,
+    longitude: 104.1954,
+    zoom: 3
   });
+  const [display, setdisplay] = useState(null);
 
   const parkLayer = {
     id: "landuse_park",
@@ -26,7 +27,6 @@ const Chart = () => {
   var val = require("./test").results.filter(item => item.country === "中国");
 
   var geoCord = require("./geo");
-  console.log(val);
   var data = val.map(
     ({
       provinceShortName,
@@ -44,24 +44,37 @@ const Chart = () => {
       deadCount
     })
   );
+  const mouseEnter = item => {
+    setdisplay(item);
+  };
+  const mouesLeave = () => {
+    setdisplay(null);
+  };
+  console.log(display);
   return (
-    <ReactMapGL
-      width={"70%"}
-      style={{ margin: "auto" }}
-      height={400}
-      latitude={35.8617}
-      longitude={104.1954}
-      zoom={3}
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={setViewport}
-      mapboxApiAccessToken="pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w"
-    >
-      <Makers data={data} />
-    </ReactMapGL>
+    <div className={style.gl}>
+      {display && (
+        <div className={style.tooltip}>
+          <div> {display.name}</div>
+          <div>Confirmed: {display.confirmedCount}</div>
+          <div>suspectedCount: {display.suspectedCount}</div>
+          <div>curedCount: {display.curedCount}</div>
+          <div>deadCount: {display.deadCount}</div>
+        </div>
+      )}
+      <ReactMapGL
+        {...viewport}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        onViewportChange={setViewport}
+        mapboxApiAccessToken="pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w"
+      >
+        <Makers data={data} mouseEnter={mouseEnter} mouesLeave={mouesLeave} />
+      </ReactMapGL>
+    </div>
   );
 };
 
-const Makers = ({ data }) => {
+const Makers = ({ data, mouseEnter, mouesLeave }) => {
   return data.map(item => (
     <Marker longitude={item.longitude} latitude={item.latitude} key={item.name}>
       <div
@@ -70,15 +83,10 @@ const Makers = ({ data }) => {
           display: "relative"
         }}
       >
-        <div className={style.tooltip}>
-          <div> {item.name}</div>
-          <div>Confirmed: {item.confirmedCount}</div>
-          <div>suspectedCount: {item.suspectedCount}</div>
-          <div>curedCount: {item.curedCount}</div>
-          <div>deadCount: {item.deadCount}</div>
-        </div>
         <div
           className={style.marker}
+          onMouseEnter={() => mouseEnter(item)}
+          onMouseLeave={() => mouesLeave()}
           style={{
             width: Math.log(item.confirmedCount) * 2.3,
             height: Math.log(item.confirmedCount) * 2.3

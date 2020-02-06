@@ -6,19 +6,26 @@
   position: relative;
 }
 
+.gl {
+  margin: auto;
+  width: 70%;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
 .tooltip {
   transition: 0.5s ease-in-out;
   background-color: #2ecc71;
-  z-index: 1000;
-  opacity: 0;
+  z-index: 1;
+  opacity: 1;
   width: fit-content;
-  border-radius: 5px;
+  border-radius: 0 0 5px 0;
   padding: 2px 5px;
   position: absolute;
   width: fit-content;
-  bottom: -5px;
-  visibility: hidden;
-  left: -5px;
+  top: 0;
+  left: 0;
   overflow: hidden;
 }
 
@@ -26,11 +33,13 @@
   display: block;
   white-space: nowrap;
   font-size: 12px;
+  text-transform: capitalize;
   color: rgb(255, 255, 255);
 }
 
-.obj:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-  animation: none;
+@media (max-width: 680px) {
+  .gl {
+    width: 90%;
+    height: 300px;
+  }
 }
