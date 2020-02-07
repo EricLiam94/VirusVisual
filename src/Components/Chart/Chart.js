@@ -89,18 +89,16 @@ const Makers = ({ data, mouseEnter, mouesLeave, type }) => {
           display: "relative"
         }}
       >
-        {item[type] !== 0 && (
-          <div
-            className={style.marker}
-            onMouseEnter={() => mouseEnter(item)}
-            onMouseLeave={() => mouesLeave()}
-            style={{
-              backgroundColor: mapColor[type],
-              width: Math.log(item[type]) * 2.3,
-              height: Math.log(item[type]) * 2.3
-            }}
-          ></div>
-        )}
+        <div
+          className={style.marker}
+          onMouseEnter={() => mouseEnter(item)}
+          onMouseLeave={() => mouesLeave()}
+          style={{
+            backgroundColor: mapColor[type],
+            width: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0,
+            height: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0
+          }}
+        ></div>
       </div>
     </Marker>
   ));
