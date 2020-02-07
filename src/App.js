@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <header style={{ marginTop: "60px" }}> 2019-nCoV in China </header>
+      <header className="mytitle"> 2019-nCoV </header>
       <Container />
       <News />
       <Rumors />
