@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, {
-  Layer,
-  NavigationControl,
-  Marker,
-  Popup
-} from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 import style from "./chart.module.css";
 
-const Chart = () => {
+const Chart = ({ type }) => {
   const [viewport, setViewport] = useState({
     width: "100%",
     height: "100%",
@@ -50,6 +45,7 @@ const Chart = () => {
   const mouesLeave = () => {
     setdisplay(null);
   };
+
   return (
     <div className={style.gl}>
       {display && (
@@ -63,17 +59,28 @@ const Chart = () => {
       )}
       <ReactMapGL
         {...viewport}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={setViewport}
         mapboxApiAccessToken="pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w"
       >
-        <Makers data={data} mouseEnter={mouseEnter} mouesLeave={mouesLeave} />
+        <Makers
+          data={data}
+          type={type}
+          mouseEnter={mouseEnter}
+          mouesLeave={mouesLeave}
+        />
       </ReactMapGL>
     </div>
   );
 };
+let mapColor = {
+  confirmedCount: "#f1c40f",
+  suspectedCount: "#95a5a6",
+  curedCount: "#2ecc71",
+  deadCount: "#c0392b"
+};
 
-const Makers = ({ data, mouseEnter, mouesLeave }) => {
+const Makers = ({ data, mouseEnter, mouesLeave, type }) => {
   return data.map(item => (
     <Marker longitude={item.longitude} latitude={item.latitude} key={item.name}>
       <div
@@ -82,15 +89,18 @@ const Makers = ({ data, mouseEnter, mouesLeave }) => {
           display: "relative"
         }}
       >
-        <div
-          className={style.marker}
-          onMouseEnter={() => mouseEnter(item)}
-          onMouseLeave={() => mouesLeave()}
-          style={{
-            width: Math.log(item.confirmedCount) * 2.3,
-            height: Math.log(item.confirmedCount) * 2.3
-          }}
-        ></div>
+        {item[type] !== 0 && (
+          <div
+            className={style.marker}
+            onMouseEnter={() => mouseEnter(item)}
+            onMouseLeave={() => mouesLeave()}
+            style={{
+              backgroundColor: mapColor[type],
+              width: Math.log(item[type]) * 2.3,
+              height: Math.log(item[type]) * 2.3
+            }}
+          ></div>
+        )}
       </div>
     </Marker>
   ));

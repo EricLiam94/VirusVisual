@@ -11,7 +11,7 @@ const Newsblock = ({ item }) => {
       <div>{item.summary} </div>
       <a href={item.sourceUrl} className={style.link} target="_blank">
         {" "}
-        More Detail <i class="fas fa-hand-point-right"></i>{" "}
+        More Detail <i className="fas fa-hand-point-right"></i>{" "}
       </a>
     </div>
   );

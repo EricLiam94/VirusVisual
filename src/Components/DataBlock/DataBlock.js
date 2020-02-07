@@ -4,7 +4,11 @@ import Loader from "react-loader-spinner";
 
 const DataBlock = props => {
   return (
-    <div className={style.block} style={props.color}>
+    <div
+      className={style.block + " " + (props.active ? style.active : " ")}
+      style={props.color}
+      onClick={() => props.setType(props.name + "Count")}
+    >
       <span className={style.title}>{props.name}</span>
       {props.success ? (
         <div className={style.value}>{props.value} </div>

@@ -1,9 +1,18 @@
 .marker {
-  background-color: red;
   border-radius: 50%;
   opacity: 0.6;
   transition: 1s linear;
   position: relative;
+  animation: bounce 0.8s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }
 
 .gl {
@@ -16,10 +25,11 @@
 
 .tooltip {
   transition: 0.5s ease-in-out;
-  background-color: #2ecc71;
+  background-color: #54e467;
   z-index: 1;
   opacity: 1;
   width: fit-content;
+  color: whitesmoke;
   border-radius: 0 0 5px 0;
   padding: 2px 5px;
   position: absolute;

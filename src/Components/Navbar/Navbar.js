@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import style from "./navbar.module.css";
 
-const Navbar = () => {
+const Navbar = props => {
   const [display, setdisplay] = useState(false);
   const toggle = () => {
     setdisplay(!display);
