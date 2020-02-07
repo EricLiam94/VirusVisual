@@ -8,9 +8,9 @@
 
 .update {
   width: 100%;
-  text-align: right;
-  float: right;
-  margin-right: 0;
+  text-align: left;
+  float: left;
+
   margin: 10px 20px;
 }
 

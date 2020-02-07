@@ -63,7 +63,7 @@ const Chart = () => {
       )}
       <ReactMapGL
         {...viewport}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={setViewport}
         mapboxApiAccessToken="pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w"
       >

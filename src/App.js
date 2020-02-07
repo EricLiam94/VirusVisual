@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-
 import Navbar from "./Components/Navbar/Navbar";
 import Container from "./Components/Container";
 import News from "./Components/News/News";
@@ -16,7 +15,6 @@ function App() {
       <Navbar />
       <header style={{ marginTop: "60px" }}> 2019-nCoV in China </header>
       <Container />
-
       <News />
       <Rumors />
       <About />
