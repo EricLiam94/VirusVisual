@@ -20,7 +20,8 @@ const Chart = ({ type }) => {
     filter: ["==", "class", "water"]
   };
   var val = require("./test").results.filter(item => item.country === "中国");
-  const APK = process.env.REACT_APP_MAP_TOKEN;
+  const APK =
+    "pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w";
   var geoCord = require("./geo");
   var data = val.map(
     ({
