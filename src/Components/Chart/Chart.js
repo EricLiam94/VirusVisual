@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
 import style from "./chart.module.css";
-
+require("dotenv").config();
 const Chart = ({ type }) => {
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -20,7 +20,7 @@ const Chart = ({ type }) => {
     filter: ["==", "class", "water"]
   };
   var val = require("./test").results.filter(item => item.country === "中国");
-
+  const APK = process.env.REACT_APP_MAP_TOKEN;
   var geoCord = require("./geo");
   var data = val.map(
     ({
@@ -61,8 +61,11 @@ const Chart = ({ type }) => {
         {...viewport}
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={setViewport}
-        mapboxApiAccessToken="pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w"
+        mapboxApiAccessToken={APK}
       >
+        <div style={{ position: "absolute", right: 0 }}>
+          <NavigationControl />
+        </div>
         <Makers
           data={data}
           type={type}
