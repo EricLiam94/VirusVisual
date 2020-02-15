@@ -3,13 +3,15 @@
 .block {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgb(95, 69, 69);
-  padding: 5px 10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
   width: 13%;
+  max-width: 170px;
   transition: 0.4s ease-in-out;
 }
 .active {

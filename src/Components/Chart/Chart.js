@@ -11,7 +11,7 @@ const Chart = ({ type }) => {
     zoom: 3
   });
   const [display, setdisplay] = useState(null);
-
+  const [data, setData] = useState([]);
   const parkLayer = {
     id: "landuse_park",
     type: "fill",
@@ -19,27 +19,15 @@ const Chart = ({ type }) => {
     "source-layer": "landuse",
     filter: ["==", "class", "water"]
   };
-  var val = require("./test").results.filter(item => item.country === "中国");
+
+  useEffect(() => {
+    var func = require("./test");
+    func(setData);
+  }, []);
+
   const APK =
     "pk.eyJ1IjoiZXJpY2xpYW0iLCJhIjoiY2s2OTB1cTVjMGFybTNtbXJ3YjlneHhkcSJ9.m3XezVm8VJ4W-UJl4x6U7w";
-  var geoCord = require("./geo");
-  var data = val.map(
-    ({
-      provinceShortName,
-      confirmedCount,
-      suspectedCount,
-      curedCount,
-      deadCount
-    }) => ({
-      name: provinceShortName,
-      longitude: geoCord[provinceShortName][0],
-      latitude: geoCord[provinceShortName][1],
-      confirmedCount,
-      suspectedCount,
-      curedCount,
-      deadCount
-    })
-  );
+
   const mouseEnter = item => {
     setdisplay(item);
   };
@@ -64,7 +52,7 @@ const Chart = ({ type }) => {
         onViewportChange={setViewport}
         mapboxApiAccessToken={APK}
       >
-        <div style={{ position: "absolute", right: 0 }}>
+        <div style={{ position: "absolute", right: 0, zIndex: 200 }}>
           <NavigationControl />
         </div>
         <Makers
@@ -85,27 +73,35 @@ let mapColor = {
 };
 
 const Makers = ({ data, mouseEnter, mouesLeave, type }) => {
-  return data.map(item => (
-    <Marker longitude={item.longitude} latitude={item.latitude} key={item.name}>
-      <div
-        className={style.obj}
-        style={{
-          display: "relative"
-        }}
+  if (data.length > 0) {
+    return data.map(item => (
+      <Marker
+        longitude={item.longitude}
+        latitude={item.latitude}
+        key={item.name}
       >
         <div
-          className={style.marker}
-          onMouseEnter={() => mouseEnter(item)}
-          onMouseLeave={() => mouesLeave()}
+          className={style.obj}
           style={{
-            backgroundColor: mapColor[type],
-            width: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0,
-            height: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0
+            display: "relative"
           }}
-        ></div>
-      </div>
-    </Marker>
-  ));
+        >
+          <div
+            className={style.marker}
+            onMouseEnter={() => mouseEnter(item)}
+            onMouseLeave={() => mouesLeave()}
+            style={{
+              backgroundColor: mapColor[type],
+              width: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0,
+              height: item[type] > 0 ? Math.log(item[type]) * 2.3 : 0
+            }}
+          ></div>
+        </div>
+      </Marker>
+    ));
+  } else {
+    return null;
+  }
 };
 
 export default Chart;

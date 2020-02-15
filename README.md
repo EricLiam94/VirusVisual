@@ -1,3 +1,13 @@
+# VirusVisual website
+
+### Visual tool: Mapbox
+
+To visit the website, click [Here](https://virusvisual.herokuapp.com/)
+
+Data are retrived from <https://lab.isaaclin.cn/nCoV/>
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
